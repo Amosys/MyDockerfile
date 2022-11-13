@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+  jenkins:
+    image: jenkins4eval/jenkins
+    container_name: jenkins
+    #选择端口
+    ports:
+      - 8008:8080
+      - 50000:50000
+    restart: always
+    volumes:
+      - ~/docker/jenkins:/var/jenkins_home

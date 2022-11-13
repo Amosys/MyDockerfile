@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  baby:
+    # 除正常工作外，容器会在任何时候重启，比如遭遇 bug、进程崩溃、docker 重启等情况
+    restart: always
+    # 设置容器名字
+    container_name: smd
+    image: dperson/samba
+    # 数据卷，使宿主机的内容可以映射到容器中，当宿主机指定目录的内容更新时，容器中的指定目录中的内容也会相应更新
+    # 所以使用数据卷时，一定要注意路径是否正确，否则会出现文件找不到或不存在的情况
+    volumes:
+      - ~/baby:/home/baby
+      - ~/amos:/home/amos
+    command: '-p
+                -u "smd;960927"
+                -s "baby;/home/baby;yes;no;no;smd;smd;smd;baby"
+                -s "amos;/home/amos;yes;no;no;smd;smd;smd;baby"'
+    ports:
+        - 139:139 
+        - 445:445
+
+
