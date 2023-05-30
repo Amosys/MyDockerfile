@@ -1,0 +1,13 @@
+CUPS with airprint
+docker run \
+       --name=airprint \
+       --restart=always \
+       --net=host \
+	     --privileged=true \
+       -v /var/run/dbus:/var/run/dbus \
+       -v ~/airprint_data/config:/config \
+       -v ~/airprint_data/services:/services \
+       --device /dev/bus/usb \
+       -e CUPSADMIN="admin" \
+       -e CUPSPASSWORD="960927" \
+       chuckcharlie/cups-avahi-airprint
